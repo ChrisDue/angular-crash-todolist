@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
 import { Todo } from 'src/app/models/Todo';
 
@@ -9,6 +9,7 @@ import { Todo } from 'src/app/models/Todo';
 })
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todo = new Todo;
+  @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter();
 
   constructor(private todoService: TodoService) { }
 
@@ -24,16 +25,21 @@ export class TodoItemComponent implements OnInit {
     return classes;
   }
 
+  // Toggle the completed state
   onToggle(todo: Todo) {
-    // Toggle in UI
+    // ... in UI
     console.log('toggle');
     todo.completed = !todo.completed;
-    // Toggle on Server
-    this.todoService.toggleCompleted(todo).subscribe(todo => console.log(todo));
+    // ... on Server
+    this.todoService.toggleCompleted(todo).subscribe(todo =>
+      console.log(todo));
   }
 
+  /*  Emit the affected Todo as Output upwards to the html...
+      Html catches it in "(deleteTodo)="deleteTodo()""...
+      And triggers the method in the todos.component. */
   onDelete(todo: Todo) {
-    console.log('delete');
+    this.deleteTodo.emit(todo);
   }
 
 }
