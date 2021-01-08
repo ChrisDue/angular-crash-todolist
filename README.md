@@ -1,5 +1,10 @@
 # AngularCrashTodolist
 
+Created by following the YouTube  crashcourse by Traversy Media: https://www.youtube.com/watch?v=Fdf5aTYRW0E  
+Related Github: https://github.com/bradtraversy/angular-crash-todolist
+
+# Boilerplate text by Angular
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
 ## Development server
